@@ -1,0 +1,20 @@
+name: Zip Deploy
+author: lovneet
+description: "Create zip of existing code then send zip to webhook for deployment"
+branding:
+  icon: "file"
+  color: green
+inputs:
+  webhook:
+    description: "Deployment webhook to handle @code.zip file"
+    required: true
+  secret:
+    description: "Webhook secret for request verification"
+    required: false
+
+outputs:
+  env:
+    description: "Deployment successfull"
+runs:
+  using: "node16"
+  main: "dist/index.js"
