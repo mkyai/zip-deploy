@@ -1,7 +1,7 @@
 "use strict";
 
 const core = require("@actions/core");
-const { exec } = require("subprocess");
+const { exec } = require("child_process");
 
 const main = async () => {
   const webhook = core.getInput("webhook");
@@ -12,11 +12,11 @@ const main = async () => {
         -F "zipFile=@code.zip" \
         ${webhook}
         `,
-    (error, response) => {
+    (error, stdout) => {
       if (error) {
         throw new Error(error);
       }
-      core.setOutput("response", response);
+      core.setOutput("response", stdout);
     }
   );
 };

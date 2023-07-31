@@ -2688,19 +2688,19 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 85:
-/***/ ((module) => {
-
-module.exports = eval("require")("subprocess");
-
-
-/***/ }),
-
 /***/ 491:
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("assert");
+
+/***/ }),
+
+/***/ 81:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("child_process");
 
 /***/ }),
 
@@ -2829,7 +2829,7 @@ var __webpack_exports__ = {};
 
 
 const core = __nccwpck_require__(186);
-const { exec } = __nccwpck_require__(85);
+const { exec } = __nccwpck_require__(81);
 
 const main = async () => {
   const webhook = core.getInput("webhook");
@@ -2840,11 +2840,11 @@ const main = async () => {
         -F "zipFile=@code.zip" \
         ${webhook}
         `,
-    (error, response) => {
+    (error, stdout) => {
       if (error) {
         throw new Error(error);
       }
-      core.setOutput("response", response);
+      core.setOutput("response", stdout);
     }
   );
 };
