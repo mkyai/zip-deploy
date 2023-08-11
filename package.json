@@ -15,7 +15,8 @@
     "publish": false
   },
   "dependencies": {
-    "@actions/core": "^1.10.0"
+    "@actions/core": "^1.10.0",
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.36.1",

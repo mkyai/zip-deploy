@@ -7,9 +7,12 @@ branding:
 inputs:
   webhook:
     description: "Deployment webhook to handle @code.zip file"
-    required: true
+    required: false
   secret:
     description: "Webhook secret for request verification"
+    required: false
+  message:
+    description: "Additional message"
     required: false
 
 outputs:

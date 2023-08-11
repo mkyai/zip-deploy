@@ -18,7 +18,7 @@ jobs:
       - name: deploy
         uses: mkyai/zip-deploy@v1
         with:
-          webhook: ${{ secrets.DEPLOY_WEBHOOK }}
+          webhook: ${{ secrets.DEPLOY_WEBHOOK }} #Optional webhook
           secret: ${{ secrets.WEBHOOK_SECRET }} #Optional secret for webhook
 ```
 
