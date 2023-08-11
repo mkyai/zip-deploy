@@ -3164,7 +3164,7 @@ __nccwpck_require__(437).config()
 const main = async () => {
   const webhook = core.getInput('webhook') || process.env.DEPLOY_WEBHOOK
   const secret = core.getInput('secret') || process.env.WEBHOOK_SECRET
-  const msg = core.getInput('message')
+  // const msg = core.getInput('message')
 
   exec(
     `zip -r code.zip . && curl -X POST -H "Authorization: ${secret}" -F "zipFile=@code.zip" ${webhook}`,
