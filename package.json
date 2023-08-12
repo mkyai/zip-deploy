@@ -4,7 +4,7 @@
   "version": "1.0.2",
   "license": "MIT",
   "description": "Create zip of existing code then send zip to webhook for deployment",
-  "repository": "mkyai/env-builder",
+  "repository": "mkyai/zip-deploy",
   "scripts": {
     "test": "standard --fix index.js",
     "build": "ncc build index.js",
