@@ -3157,40 +3157,40 @@ var __webpack_exports__ = {};
 "use strict";
 
 
-const core = __nccwpck_require__(186);
-const { exec } = __nccwpck_require__(81);
-const { promises: fs } = __nccwpck_require__(147);
-(__nccwpck_require__(437).config)();
+const core = __nccwpck_require__(186)
+const { exec } = __nccwpck_require__(81)
+const { promises: fs } = __nccwpck_require__(147)
+__nccwpck_require__(437).config()
 
 const decorateMessage = (msg) => {
-  const updates = msg.split(" | ");
-  const changelog = String(updates.map((update) => `- ${update}`).join("\\n"));
-  return `DEPLOYMENT_UPDATES="\\n> *UPDATES*\\n${changelog}"`;
-};
+  const updates = msg.split(' | ')
+  const changelog = String(updates.map((update) => `- ${update}`).join('\\n'))
+  return `DEPLOYMENT_UPDATES="\\n> *UPDATES*\\n${changelog}"`
+}
 
 const main = async () => {
-  const webhook = core.getInput("webhook") || process.env.DEPLOY_WEBHOOK;
-  const secret = core.getInput("secret") || process.env.WEBHOOK_SECRET;
-  const msg = core.getInput("message");
+  const webhook = core.getInput('webhook') || process.env.DEPLOY_WEBHOOK
+  const secret = core.getInput('secret') || process.env.WEBHOOK_SECRET
+  const msg = core.getInput('message')
   if (msg) {
-    const changelog = decorateMessage(String(msg));
-    fs.writeFile("./changelog", changelog);
+    const changelog = decorateMessage(String(msg))
+    fs.writeFile('./changelog', changelog)
   }
 
   exec(
     `zip -r code.zip . && curl -X POST -H "Authorization: ${secret}" -F "zipFile=@code.zip" ${webhook}`,
     (error, stdout) => {
       if (error) {
-        console.log("ERROR:", error);
-        throw new Error(error);
+        console.log('ERROR:', error)
+        throw new Error(error)
       }
-      console.log("STDOUT", stdout);
-      core.setOutput("response", stdout);
+      console.log('STDOUT', stdout)
+      core.setOutput('response', stdout)
     }
-  );
-};
+  )
+}
 
-main().catch((err) => core.setFailed(err.message));
+main().catch((err) => core.setFailed(err.message))
 
 })();
 
