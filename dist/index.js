@@ -3159,12 +3159,23 @@ var __webpack_exports__ = {};
 
 const core = __nccwpck_require__(186)
 const { exec } = __nccwpck_require__(81)
+const { promises: fs } = __nccwpck_require__(147)
 __nccwpck_require__(437).config()
+
+const decorateMessage = (msg) => {
+  const updates = msg.split(' | ')
+  const changelog = String(updates.map((update) => `- ${update}`).join('\n'))
+  return `\n> *UPDATES*\n${changelog}`
+}
 
 const main = async () => {
   const webhook = core.getInput('webhook') || process.env.DEPLOY_WEBHOOK
   const secret = core.getInput('secret') || process.env.WEBHOOK_SECRET
-  // const msg = core.getInput('message')
+  const msg = core.getInput('message')
+  if (msg) {
+    const changelog = decorateMessage(String(msg))
+    fs.writeFile('./changelog', changelog)
+  }
 
   exec(
     `zip -r code.zip . && curl -X POST -H "Authorization: ${secret}" -F "zipFile=@code.zip" ${webhook}`,

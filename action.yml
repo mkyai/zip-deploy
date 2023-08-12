@@ -12,7 +12,7 @@ inputs:
     description: "Webhook secret for request verification"
     required: false
   message:
-    description: "Additional message"
+    description: "Additional message [Updates for deployment changelog]"
     required: false
 
 outputs:
