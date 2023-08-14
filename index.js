@@ -6,8 +6,10 @@ const { promises: fs } = require("fs");
 require("dotenv").config();
 
 const decorateMessage = (msg) => {
-  const updates = msg.split(" | ");
-  const changelog = String(updates.map((update) => `- ${update}`).join("\\n"));
+  const updates = msg.split("|");
+  const changelog = String(
+    updates.map((update) => `- ${String(update).trim()}`).join("\\n")
+  );
   return `DEPLOYMENT_UPDATES="\\n${changelog}"`;
 };
 
