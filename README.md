@@ -20,7 +20,6 @@ jobs:
         with:
           webhook: ${{ secrets.DEPLOY_WEBHOOK }} #Optional webhook
           secret: ${{ secrets.WEBHOOK_SECRET }} #Optional secret for webhook
-          message: $(git log -1 --pretty=%B) #Optional message for webhook [Updates for deployment changelog]
 ```
 
 ## License
