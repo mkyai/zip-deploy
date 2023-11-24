@@ -3157,28 +3157,28 @@ var __webpack_exports__ = {};
 "use strict";
 
 
-const core = __nccwpck_require__(186);
-const { exec } = __nccwpck_require__(81);
-(__nccwpck_require__(437).config)();
+const core = __nccwpck_require__(186)
+const { exec } = __nccwpck_require__(81)
+__nccwpck_require__(437).config()
 
 const main = async () => {
-  const webhook = core.getInput("webhook") || process.env.DEPLOY_WEBHOOK;
-  const secret = core.getInput("secret") || process.env.WEBHOOK_SECRET;
+  const webhook = core.getInput('webhook') || process.env.DEPLOY_WEBHOOK
+  const secret = core.getInput('secret') || process.env.WEBHOOK_SECRET
 
   exec(
     `rm -rf node_modules && echo $(git log -1 --pretty=%B) > changelog && zip -r code.zip . && curl -X POST -H "Authorization: ${secret}" -F "zipFile=@code.zip" ${webhook}`,
     (error, stdout) => {
       if (error) {
-        console.log("ERROR:", error);
-        throw new Error(error);
+        console.log('ERROR:', error)
+        throw new Error(error)
       }
-      console.log("STDOUT", stdout);
-      core.setOutput("response", stdout);
+      console.log('STDOUT', stdout)
+      core.setOutput('response', stdout)
     }
-  );
-};
+  )
+}
 
-main().catch((err) => core.setFailed(err.message));
+main().catch((err) => core.setFailed(err.message))
 
 })();
 
