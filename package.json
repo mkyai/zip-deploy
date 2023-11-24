@@ -1,7 +1,7 @@
 {
   "name": "zip-deploy-action",
   "private": false,
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "MIT",
   "description": "Create zip of existing code then send zip to webhook for deployment",
   "repository": "mkyai/zip-deploy",
