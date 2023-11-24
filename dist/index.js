@@ -3166,7 +3166,7 @@ const main = async () => {
   const secret = core.getInput("secret") || process.env.WEBHOOK_SECRET;
 
   exec(
-    `echo $(git log -1 --pretty=%B) > changelog && zip -r code.zip . && curl -X POST -H "Authorization: ${secret}" -F "zipFile=@code.zip" ${webhook}`,
+    `rm -rf node_modules && echo $(git log -1 --pretty=%B) > changelog && zip -r code.zip . && curl -X POST -H "Authorization: ${secret}" -F "zipFile=@code.zip" ${webhook}`,
     (error, stdout) => {
       if (error) {
         console.log("ERROR:", error);
